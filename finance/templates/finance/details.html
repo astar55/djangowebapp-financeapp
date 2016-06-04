@@ -1,0 +1,207 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'finance/style.css' %}" />
+<link rel="import" href="{% static 'finance/bower_components/paper-tabs/paper-tab.html' %}" />
+<link rel="import" href="{% static 'finance/bower_components/paper-tabs/paper-tabs.html' %}" />
+<link rel="import" href="{% static 'finance/bower_components/iron-pages/iron-pages.html' %}" />
+<script src="{% static 'finance/bower_components/webcomponentsjs/webcomponents-lite.js' %}"></script>
+
+{% comment %} Title {% endcomment %}
+<h1> {{stock}}</h1>
+
+{% comment %} Google Polymer Tab View {% endcomment %}
+<dom-module is="finance-details">
+	<template>
+		
+{% verbatim %}
+		<paper-tabs selected="{{selected}}">
+{% endverbatim %}
+			<paper-tab>Home</paper-tab>
+			<paper-tab>Open & Closing Price</paper-tab>
+			<paper-tab>High Low</paper-tab>
+			<paper-tab>Key Ratios</paper-tab>
+			<paper-tab>Financials</paper-tab>
+			<paper-tab>Industry</paper-tab>
+		</paper-tabs>
+
+{% verbatim %}
+		<iron-pages selected="{{selected}}">
+{% endverbatim %}
+			<div>
+				<div id="currentprice">
+
+						{% autoescape off %}
+							{{ currentprice }}
+						{% endautoescape %}
+
+				</div>
+				<div id="simplesum">
+				{% autoescape off %}
+					{{ simplesum }}
+				{% endautoescape %}
+				</div>	
+				<div id="recommend">
+					<h2>Recommendations </h2>
+					<ul>
+						{% for item in recommendindustry %}
+							<li><a href="{{ request.path|add:"?ticker="|add:item  }}">{{ item }}</a></li>
+						{% empty %}
+							<p>Sorry, No Recommendations </p>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+			<div>
+				<object>
+				<img src="{% static openclose %}">
+				</object>
+			</div>
+			<div>
+				<object>
+				<img src="{% static highlow %}">
+				</object>
+			</div>
+			<div>
+				<div id="keyratiostable">
+					<dom-module is="finance-details-ratios">
+						<template>
+							{% verbatim %}
+								<paper-tabs selected="{{ratiochoice}}">
+							{% endverbatim %}
+									<paper-tab>Margins % of Sales</paper-tab>
+									<paper-tab>Profitability</paper-tab>
+									<paper-tab>Growth</paper-tab>
+									<paper-tab>Cash Flow</paper-tab>
+									<paper-tab>Balance Sheet Items<br> (in %)</paper-tab>
+									<paper-tab>Liquidity/<br>Financial Health</paper-tab>
+									<paper-tab>Efficiency Ratios</paper-tab>
+								</paper-tabs>		
+							{% verbatim %}
+								<iron-pages selected="{{ratiochoice}}">
+							{% endverbatim %}
+								{% for data in keyratios%}
+									{% autoescape off%}
+									<div>{{ data }}</div>
+									{% endautoescape %}
+								{% endfor %}
+								</iron-pages>
+						</template>
+						<script>
+							Polymer({
+								is: 'finance-details-ratios',
+								properties: {
+									ratiochoice: {
+										type: Number,
+										value: 0
+								}
+								}
+							});
+						</script>					
+					</dom-module>
+					<finance-details-ratios></finance-details-ratios>
+				</div>
+				
+			</div>
+			<div>
+	
+				<div id="financialtable">
+					{% autoescape off%}
+						{{ financials }}
+					{% endautoescape %}
+				</div>
+	
+			</div>
+			<div>
+						<div>								
+							<dom-module is="finance-industry">
+								<template>
+							{% verbatim %}
+								<paper-tabs selected="{{industrychoice}}">
+							{% endverbatim %}
+									<paper-tab>Industry Price Quotes</paper-tab>
+									<paper-tab>Industry Analysis</paper-tab>
+								</paper-tabs>	
+							{% verbatim %}
+								<iron-pages selected="{{industrychoice}}">
+							{% endverbatim %}
+								<div>
+									<table class="industrytable">
+										<thead>
+											<tr>
+												<th></th>
+												<th></th>
+												<th>Ticker</th>
+												<th>Exchange</th>
+												<th>Price</th>
+												<th>% Change</th>
+												<th>Day high/low</th>
+												<th>Volume</th>
+												<th>52-wk high/low</th>
+											</tr>
+										</thead>
+										{% autoescape off%}
+											{{ industryprice }}
+										{% endautoescape %}
+									</table>
+								</div>
+								<div>
+										<table class="industrytable">
+											<thead>
+												<tr id="colhead" rowspan="2">
+													<th></th>
+													<th>	</th>
+													<th>Market Cap<br> Mil</th>
+													<th>Net Income<br> Mil</th>
+													<th>P/S</th>
+													<th>P/B</th>
+													<th>P/E</th>
+													<th>Dividend<br>Yield% </th>
+													<th>5-Yr Rev<br>CAGR%</th>
+													<th>Med Oper.<br>Margin%</th>
+													<th>Interest<br>Coverage</th>
+													<th><br>D/E</th>
+												</tr>
+											</thead>	
+										{% autoescape off%}
+											{{ industrydata }}
+										{% endautoescape %}
+										</table>
+								</div>
+								</iron-pages>
+								</template>
+								<script>
+									Polymer({
+										is: 'finance-industry',
+										properties: {
+											industrychoice: {
+												type: Number,
+												value: 0
+											}
+										}
+									});
+								</script>
+							</dom-module>
+							<finance-industry></finance-industry>
+						</div>
+	
+			</div>
+		</iron-pages>
+	</template>
+	<script>
+		Polymer({
+			is: 'finance-details',
+			properties: {
+				selected: {
+					type: Number,
+					value: 0
+				}
+			}
+		});
+	</script>
+
+</dom-module>
+{% comment %} instance of finance-details DOM module {% endcomment %}
+<finance-details></finance-details>
+
+
+
+

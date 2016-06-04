@@ -1,0 +1,134 @@
+#tickerfield {
+	padding-left: 40%;
+	padding-right: 35%;
+	padding-top:  20%;
+	padding-bottom: 20%;
+	position: absolute;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+body{
+	background-color: mediumspringgreen;
+
+}
+
+h1{
+	padding-top: 2%;
+	text-align: center;
+	font-size: 2em;
+	font-family: Calibri, Arial, sans-serif;
+	color: royalblue;
+}
+
+#error {
+	font-weight: bold;
+	font-size: 24px;
+	font-family: Calibri, Arial, sans-serif;
+	color: darkcyan;
+	text-align: center;
+}
+
+img{
+	height: auto;
+	width: 85%;
+	margin-left: 10%;
+	margin-top: 2%;
+}
+
+nav{
+	text-align: center;
+}
+
+nav li{
+	display: inline-block;
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
+table{
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 5%;
+	border-collapse: collapse;
+	color: royalblue;
+	font-family: Calibri, Arial, sans-serif;
+}
+
+table tr{
+	border-bottom: thin solid lightgoldenrodyellow;
+}
+
+#colhead th{
+	text-align: right;
+	font-weight: bold;
+}
+
+.industrytable {
+	margin-top: 2%;
+}
+
+.industrytable th{
+	margin-top: 2em;
+	font-weight: 600;
+}
+
+.industrytable thead{
+	text-align: right;
+}
+
+#keyratiostable{
+	margin-top: 1%;
+}
+
+#keyratios thead th {
+	text-align: right;
+}
+
+iron-pages {
+	padding: 8px;
+}
+
+paper-tabs {
+	font-family: Calibri, Arial, sans-serif;
+	background-color: skyblue;
+	text-align: center;
+}
+
+#keyratiostable tbody tr th {
+	text-align: left;
+}
+
+#keyratiostable thead tr th {
+	text-align: right;
+}
+	
+#simplesum table{
+	width: 30%;
+	float: left;
+}
+
+#currentprice table{
+	float: right;
+	width: 70%;
+}
+
+#currentprice .gr_colm_a2a.style-scope.finance-details {
+	width: 250px;
+	float: left;
+	margin-left: 5%;
+	color: royalblue;
+}
+
+#currentprice .gr_colm_a2b.style-scope.finance-details {
+	margin-right: 5%;	
+}
+
+#recommend {
+	color: royalblue;
+	clear: both;
+}
+
+#recommend li{
+	list-style-type: none;
+}

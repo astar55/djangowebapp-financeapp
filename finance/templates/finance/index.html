@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'finance/style.css' %}" />
+
+<div id ="tickerfield">
+    {% comment %} holds validation error message {% endcomment %}
+	{% if messages %}
+		{% for message in messages%}
+			<p id="error"> {{ message }} </p>
+		{% endfor %}
+	{% endif %}
+    {% comment %}  Search Form {% endcomment%}
+	<h1> Ticker Search </h1>
+	<form action="{% url 'finance:details' %}" method="get">
+		<input type="text" name="ticker" id="ticker" placeholder="Enter Ticker">
+		<input type="submit" value="Search">
+	</form>
+</div>
