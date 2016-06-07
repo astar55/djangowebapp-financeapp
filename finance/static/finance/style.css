@@ -132,3 +132,7 @@ paper-tabs {
 #recommend li{
 	list-style-type: none;
 }
+
+thead th:first-child {
+	text-align: left !important;
+}

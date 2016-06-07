@@ -21,8 +21,7 @@ def details(request):
 			getdata.getdata(stock)
 			return render(request, 'finance/details.html', {'openclose': getdata.getOpenClosegraph(stock),
 		'highlow': getdata.getHighLowgraph(stock), 'industrydata': getdata.getIndustryPeers(stock),
-		'keyratios': getdata.getKeyRatios(stock), 'financials': getdata.getFinancials(stock),
-		'simplesum': getdata.getSimpleSummary(stock), 'currentprice': getdata.getCurrentPrice(stock),
+		'keyratios': getdata.getKeyRatios(stock), 
 		'industryprice': getdata.getIndustyPeersQuote(stock), 'recommendindustry': getdata.getRecommendation(stock),
 		 'stock': stock}, )
 		except OSError:

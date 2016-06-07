@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load fin_extras %}
 <link rel="stylesheet" type="text/css" href="{% static 'finance/style.css' %}" />
 <link rel="import" href="{% static 'finance/bower_components/paper-tabs/paper-tab.html' %}" />
 <link rel="import" href="{% static 'finance/bower_components/paper-tabs/paper-tabs.html' %}" />
@@ -30,13 +31,13 @@
 				<div id="currentprice">
 
 						{% autoescape off %}
-							{{ currentprice }}
+							{% getCurrentPrice stock%}
 						{% endautoescape %}
 
 				</div>
 				<div id="simplesum">
 				{% autoescape off %}
-					{{ simplesum }}
+					{% getSimpleSummary stock %}
 				{% endautoescape %}
 				</div>	
 				<div id="recommend">
@@ -105,7 +106,7 @@
 	
 				<div id="financialtable">
 					{% autoescape off%}
-						{{ financials }}
+						{% getFinancials stock %}
 					{% endautoescape %}
 				</div>
 	
