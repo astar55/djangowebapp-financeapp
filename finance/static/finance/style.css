@@ -133,6 +133,14 @@ paper-tabs {
 	list-style-type: none;
 }
 
+#recommend h2{
+	padding-top: 1em;
+}
+
 thead th:first-child {
 	text-align: left !important;
+}
+
+td img{
+	display: none;
 }
