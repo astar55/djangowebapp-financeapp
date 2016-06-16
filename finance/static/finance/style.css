@@ -144,3 +144,37 @@ thead th:first-child {
 td img{
 	display: none;
 }
+
+#ticker .input-content.paper-input-container label {
+	color: royalblue;
+}
+
+paper-button {
+	color: white;
+	background-color: royalblue !important;
+}
+
+paper-icon-button {
+	--paper-icon-button-ink-color: white;
+}
+
+app-header {
+	height: 5em;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color: aqua;
+}
+
+app-toolbar h1 {
+	width: 95%;
+}
+
+paper-icon-button {
+	width: 5%;
+	height: 5%;
+}
+
+.hidden-input {
+	display: none;
+}
