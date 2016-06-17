@@ -3,20 +3,21 @@
 <link rel="import" href="{% static 'finance/bower_components/paper-input/paper-input.html' %}" />
 <link rel="import" href="{% static 'finance/bower_components/paper-button/paper-button.html' %}" />
 <script src="{% static 'finance/finance.js' %}"></script>
-
-<div id ="tickerfield">
-    {% comment %} holds validation error message {% endcomment %}
-	{% if messages %}
-		{% for message in messages%}
-			<p id="error"> {{ message }} </p>
-		{% endfor %}
-	{% endif %}
-    {% comment %}  Search Form {% endcomment%}
-	<h1> Ticker Search </h1>
-	<form action="{% url 'finance:details' %}" method="get" id="ticker-data">
-		<paper-input name="ticker" id="ticker" placeholder="Enter Ticker" label="Ticker"></paper-input>
-		<paper-button raised onclick="_nativeSubmit(event)">Search</paper-button>
-	</form>
-	<form action="{% url 'finance:details' %}" method="get" id="ticker-form">
-	</form>
-</div>
+<body class="no-scroll">
+	<div id ="tickerfield">
+		{% comment %} holds validation error message {% endcomment %}
+		{% if messages %}
+			{% for message in messages%}
+				<p id="error"> {{ message }} </p>
+			{% endfor %}
+		{% endif %}
+		{% comment %}  Search Form {% endcomment%}
+		<h1> Ticker Search </h1>
+		<form action="{% url 'finance:details' %}" method="get" id="ticker-data">
+			<paper-input name="ticker" id="ticker" placeholder="Enter Ticker" label="Ticker"></paper-input>
+			<paper-button raised onclick="_nativeSubmit(event)">Search</paper-button>
+		</form>
+		<form action="{% url 'finance:details' %}" method="get" id="ticker-form">
+		</form>
+	</div>
+</body>

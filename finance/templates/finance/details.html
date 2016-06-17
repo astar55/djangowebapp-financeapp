@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load fin_extras %}
+<title>{{stock}}</title>
 <link rel="stylesheet" type="text/css" href="{% static 'finance/style.css' %}" />
 <link rel="import" href="{% static 'finance/bower_components/paper-tabs/paper-tab.html' %}" />
 <link rel="import" href="{% static 'finance/bower_components/paper-tabs/paper-tabs.html' %}" />
@@ -9,6 +10,7 @@
 <link rel="import" href="{% static 'finance/bower_components/app-layout/app-toolbar/app-toolbar.html' %}" />
 <link rel="import" href="{% static 'finance/bower_components/iron-icons/iron-icons.html' %}" />
 <link rel="import" href="{% static 'finance/bower_components/paper-input/paper-input.html' %}" />
+<link rel="import" href="{% static 'finance/bower_components/paper-card/paper-card.html' %}" />
 <script src="{% static 'finance/bower_components/webcomponentsjs/webcomponents-lite.js' %}"></script>
 <script src="{% static 'finance/finance.js' %}"></script>
 
@@ -42,18 +44,21 @@
 		<iron-pages selected="{{selected}}">
 {% endverbatim %}
 			<div>
+				<paper-card>
 				<div id="currentprice">
-
-						{% autoescape off %}
-							{% getCurrentPrice stock%}
-						{% endautoescape %}
-
+				{% autoescape off %}
+					{% getCurrentPrice stock %}
+				{% endautoescape %}
 				</div>
+				</paper-card>
+				<paper-card>
 				<div id="simplesum">
 				{% autoescape off %}
 					{% getSimpleSummary stock %}
 				{% endautoescape %}
 				</div>	
+				</paper-card>
+				<paper-card>
 				<div id="recommend">
 					<h2>Recommendations </h2>
 					<ul>
@@ -64,16 +69,21 @@
 						{% endfor %}
 					</ul>
 				</div>
+				</paper-card>
 			</div>
 			<div>
+				<paper-card>
 				<object>
 				<img src="{% static openclose %}">
 				</object>
+				</paper-card>
 			</div>
 			<div>
+				<paper-card>
 				<object>
 				<img src="{% static highlow %}">
 				</object>
+				</paper-card>
 			</div>
 			<div>
 				<div id="keyratiostable">
@@ -94,9 +104,11 @@
 								<iron-pages selected="{{ratiochoice}}">
 							{% endverbatim %}
 								{% for data in keyratios%}
+								<paper-card>
 									{% autoescape off%}
 									<div>{{ data }}</div>
 									{% endautoescape %}
+								</paper-card>
 								{% endfor %}
 								</iron-pages>
 						</template>
@@ -117,13 +129,13 @@
 				
 			</div>
 			<div>
-	
+				<paper-card>
 				<div id="financialtable">
 					{% autoescape off%}
 						{% getFinancials stock %}
 					{% endautoescape %}
 				</div>
-	
+				</paper-card>
 			</div>
 			<div>
 						<div>								
@@ -138,6 +150,7 @@
 							{% verbatim %}
 								<iron-pages selected="{{industrychoice}}">
 							{% endverbatim %}
+							<paper-card>
 								<div>
 									<table class="industrytable">
 										<thead>
@@ -158,6 +171,8 @@
 										{% endautoescape %}
 									</table>
 								</div>
+								</paper-card>
+								<paper-card>
 								<div>
 										<table class="industrytable">
 											<thead>
@@ -181,6 +196,7 @@
 										{% endautoescape %}
 										</table>
 								</div>
+								</paper-card>
 								</iron-pages>
 								</template>
 								<script>

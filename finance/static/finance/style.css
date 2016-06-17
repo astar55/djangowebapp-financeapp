@@ -14,7 +14,6 @@ body{
 }
 
 h1{
-	padding-top: 2%;
 	text-align: center;
 	font-size: 2em;
 	font-family: Calibri, Arial, sans-serif;
@@ -33,7 +32,6 @@ img{
 	height: auto;
 	width: 85%;
 	margin-left: 10%;
-	margin-top: 2%;
 }
 
 nav{
@@ -166,6 +164,10 @@ app-header {
 	background-color: aqua;
 }
 
+app-toolbar {
+	padding-top: .5em !important;
+}
+
 app-toolbar h1 {
 	width: 95%;
 }
@@ -177,4 +179,14 @@ paper-icon-button {
 
 .hidden-input {
 	display: none;
+}
+
+.no-scroll {
+	overflow: hidden;
+}
+
+paper-card {
+	width: 100%;
+	padding: 1em;
+	background-color: antiquewhite !important;
 }

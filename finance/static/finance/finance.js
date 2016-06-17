@@ -1,4 +1,4 @@
-var count = 0;
+var elist;
 
 function _nativeSubmit(event) {
     var input = document.createElement('input');
@@ -11,23 +11,26 @@ function _nativeSubmit(event) {
 }
 
 function search(){
-    this.count = 0;
     var input = document.querySelector(".hidden-input");
     input.style.display="inline";
     input.focus();
-    input.addEventListener("focusout", hidesearch());
-    console.log(count)
+    //input.addEventListener("focus", hidesearch());
 }
 
 function hidesearch(){
-    this.count += 1;
-    if (this.count >= 2){
+    if (document.querySelector(":focus") != document.querySelector("paper-input")){
         var input = document.querySelector("paper-input");
         input.style.display="none";
         try{
-            input.removeEventListener("focusout", hidesearch());
+        input.removeEventListener("focusout", hidesearch());
         }
-        catch (RangeError){}
+        catch (RangeError) {}
     }
-    console.log(count)
+    else{
+        removetimer();
+    }
+}
+
+function removetimer(){
+    window.clearTimeout(elist);
 }

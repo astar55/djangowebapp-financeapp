@@ -8,21 +8,21 @@ register = template.Library()
 ''' get quote summary from morningstar'''
 @register.simple_tag
 def getCurrentPrice(ticker):
-    try:
-        url = urllib.request.urlopen("http://quotes.morningstar.com/stock/c-header?&t=XNAS:%s&region=usa&culture=en-US&version=RET" % ticker)
-        html = url.read()
+    url = urllib.request.urlopen("http://quotes.morningstar.com/stock/c-header?&t=XNAS:%s&region=usa&culture=en-US&version=RET" % ticker)
+    html = url.read()
+    if len(html) != 0:
         html = str(html, "utf8").split('<script type="text/javascript">')
-    except IndexError:
-        try:
-            url = urllib.request.urlopen("http://quotes.morningstar.com/stock/c-header?&t=PINX:%s&region=usa&culture=en-US&version=RET" % ticker)
-            html = url.read()
-            html = str(html, "utf8").split('<script type="text/javascript">')
-        except IndexError:
-            try:
-                url = urllib.request.urlopen("http://quotes.morningstar.com/stock/c-header?&t=XNYS:%s&region=usa&culture=en-US&version=RET" % ticker)
-                html = url.read()
+    else:
+        url = urllib.request.urlopen("http://quotes.morningstar.com/stock/c-header?&t=PINX:%s&region=usa&culture=en-US&version=RET" % ticker)
+        html = url.read()
+        if len(html) != 0:
                 html = str(html, "utf8").split('<script type="text/javascript">')
-            except IndexError:
+        else:
+            url = urllib.request.urlopen("http://quotes.morningstar.com/stock/c-header?&t=XNYS:%s&region=usa&culture=en-US&version=RET" % ticker)
+            html = url.read()
+            if len(html) != 0:
+                html = str(html, "utf8").split('<script type="text/javascript">')
+            else:
                 return None       
     return html[0]
 
