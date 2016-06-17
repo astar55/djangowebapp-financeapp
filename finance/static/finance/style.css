@@ -3,7 +3,6 @@
 	padding-right: 35%;
 	padding-top:  20%;
 	padding-bottom: 20%;
-	position: absolute;
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
@@ -188,5 +187,5 @@ paper-icon-button {
 paper-card {
 	width: 100%;
 	padding: 1em;
-	background-color: antiquewhite !important;
+	background-color: powderblue !important;
 }

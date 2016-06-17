@@ -2,8 +2,10 @@
 <link rel="stylesheet" type="text/css" href="{% static 'finance/style.css' %}" />
 <link rel="import" href="{% static 'finance/bower_components/paper-input/paper-input.html' %}" />
 <link rel="import" href="{% static 'finance/bower_components/paper-button/paper-button.html' %}" />
+<link rel="import" href="{% static 'finance/bower_components/paper-card/paper-card.html' %}" />
 <script src="{% static 'finance/finance.js' %}"></script>
 <body class="no-scroll">
+	<paper-card>
 	<div id ="tickerfield">
 		{% comment %} holds validation error message {% endcomment %}
 		{% if messages %}
@@ -20,4 +22,5 @@
 		<form action="{% url 'finance:details' %}" method="get" id="ticker-form">
 		</form>
 	</div>
+	</paper-card>
 </body>

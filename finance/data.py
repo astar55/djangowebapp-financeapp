@@ -250,12 +250,15 @@ def getRecommendation(ticker):
             comp = peers.strip()
             try:
                 count = 0
-                data = DataReader(comp, 'yahoo')
+                data = DataReader(comp, 'yahoo', weekdatelist[len(weekdatelist)-1], weekdatelist[0])
                 for i in range(len(weekdatelist)-1, 0, -1):
-                    if data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] > 0:
-                        count += 1
-                    elif data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] < 0:
-                        count = 0
+                    try:
+                        if data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] > 0:
+                            count += 1
+                        elif data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] < 0:
+                            count = 0
+                    except KeyError:
+                        continue
                 if count >= 2:
                     recommendlist.append(comp)
             except OSError:
@@ -283,12 +286,15 @@ def getRecommendation(ticker):
                 comp = peers.strip()
                 try:
                     count = 0
-                    data = DataReader(comp, 'yahoo')
+                    data = DataReader(comp, 'yahoo', weekdatelist[len(weekdatelist)-1], weekdatelist[0])
                     for i in range(len(weekdatelist)-1):
-                        if data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] > 0:
-                            count += 1
-                        elif data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] < 0:
-                            count = 0
+                        try:
+                            if data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] > 0:
+                                count += 1
+                            elif data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] < 0:
+                                count = 0
+                        except KeyError:
+                            continue
                     if count >= 2:
                         recommendlist.append(comp)
                 except OSError:
@@ -316,12 +322,15 @@ def getRecommendation(ticker):
                     comp = peers.strip()
                     try:
                         count = 0
-                        data = DataReader(comp, 'yahoo')
+                        data = DataReader(comp, 'yahoo', weekdatelist[len(weekdatelist)-1], weekdatelist[0])
                         for i in range(len(weekdatelist)-1):
-                            if data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] > 0:
-                                count += 1
-                            elif data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] < 0:
-                                count = 0
+                            try:
+                                if data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] > 0:
+                                    count += 1
+                                elif data.ix[str(weekdatelist[i-1])]['Close']-data.ix[str(weekdatelist[i])]['Close'] < 0:
+                                    count = 0
+                            except KeyError:
+                                continue
                         if count >= 2:
                             recommendlist.append(comp)
                     except OSError:
