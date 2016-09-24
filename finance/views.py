@@ -20,9 +20,7 @@ def details(request):
 		try:
 			getdata.getdata(stock)
 			return render(request, 'finance/details.html', {'openclose': getdata.getOpenClosegraph(stock),
-		'highlow': getdata.getHighLowgraph(stock), 'industrydata': getdata.getIndustryPeers(stock),
-		'keyratios': getdata.getKeyRatios(stock), 
-		'industryprice': getdata.getIndustyPeersQuote(stock), 'recommendindustry': getdata.getRecommendation(stock),
+		'highlow': getdata.getHighLowgraph(stock), 
 		 'stock': stock}, )
 		except OSError:
 			messages.add_message(request, messages.ERROR, 'Invalid Ticker')

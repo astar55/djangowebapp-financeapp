@@ -62,6 +62,7 @@
 				<div id="recommend">
 					<h2>Recommendations </h2>
 					<ul>
+						{% getRecommendation stock as recommendindustry  %}
 						{% for item in recommendindustry %}
 							<li><a href="{{ request.path|add:"?ticker="|add:item  }}">{{ item }}</a></li>
 						{% empty %}
@@ -103,6 +104,7 @@
 							{% verbatim %}
 								<iron-pages selected="{{ratiochoice}}">
 							{% endverbatim %}
+								{% getKeyRatios stock as keyratios %}
 								{% for data in keyratios%}
 								<paper-card>
 									{% autoescape off%}
@@ -167,6 +169,7 @@
 											</tr>
 										</thead>
 										{% autoescape off%}
+										{% getIndustyPeersQuote stock as industryprice %}
 											{{ industryprice }}
 										{% endautoescape %}
 									</table>
@@ -192,6 +195,7 @@
 												</tr>
 											</thead>	
 										{% autoescape off%}
+										{% getIndustryPeers stock as industrydata %}
 											{{ industrydata }}
 										{% endautoescape %}
 										</table>

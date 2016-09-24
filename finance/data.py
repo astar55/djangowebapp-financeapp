@@ -195,10 +195,12 @@ def getFinancials(ticker):
 
 '''get quote summary from yahoo '''
 def getSimpleSummary(ticker):
-    url = urllib.request.urlopen("http://finance.yahoo.com/q?s=%s" % ticker)
+    url = urllib.request.urlopen("http://finance.yahoo.com/quote/%s" % ticker)
     html = url.read()
-    html = str(html, "utf8").split('<div id="yfi_quote_summary_data" class="rtq_table">')
-    html = html[1].split("</div>")
+    html = str(html, "utf8").split('<div id=\"quote-summary\"')
+    html[1] = '<div id=\"quote-summary\"' + html[1]
+    html = html[1].split("Trade prices are not sourced from all markets")
+    html[0] = html[0]+'</span>'
     return html[0]
     
 ''' get quote summary from morningstar'''
