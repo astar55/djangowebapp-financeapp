@@ -35,7 +35,7 @@ def getSimpleSummary(ticker):
     html = str(html, "utf8").split('<div id=\"quote-summary\"')
     html[1] = '<div id=\"quote-summary\"' + html[1]    
     html = html[1].split("Trade prices are not sourced from all markets")
-    html[0] = html[0]+'</span>'
+    html[0] = html[0]+'</span></div>'
     return html[0]
 
 '''gets financials from morningstar'''
